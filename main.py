@@ -7,7 +7,9 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+#Out of all the imports added, Perceptron, random, numpy, and matplotlib weren't used in this specific cell. 
 
+#Creating the dictionary of hyper-parameters I want the GridSearchCV to try. 
 parameters =  {"hidden_layer_sizes":[(1,),(1,1),(2,2),(5,5),(10,5),(15,5),(20,3)],"max_iter":[5000,7000,10000],"learning_rate_init":[0.1,0.01,0.001,0.0001]}
 #####################
 # CREATING THE DATA #
@@ -29,8 +31,11 @@ clf = GridSearchCV(MLP(), param_grid = parameters,verbose = 1)
 clf.fit(x_train,y_train)
 
 #Printing out key information from the cross-validation
+
 print(clf.cv_results_.keys())
+#Best parameters were typically a (5,5) hidden_layer_sizes, 7000 maximum iterations, and between 0.001 and 0.1 learning_rate_init
 print(clf.best_params_)
+#Best scores were typically in the range of 98.5 percent
 print(clf.best_score_)
 
 ##############################
