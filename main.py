@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+#Choosing the parameters that I want the GridSearchCV to try out
 parameters =  {"hidden_layer_sizes":[(1,),(1,1),(2,2),(5,5),(10,5),(15,5),(20,3)],"max_iter":[5000,7000,10000],"learning_rate_init":[0.1,0.01,0.001,0.0001]}
 #####################
 # CREATING THE DATA #
@@ -18,11 +19,11 @@ x_train,x_test,y_train,y_test = train_test_split(iris.data,iris.target,test_size
 ##############################
 # CREATING/TRAINING THE MODEL#
 ##############################
-#model = MLP(hidden_layer_sizes = (5,5),max_iter = 7000,learning_rate_init = 0.01,activation = 'logistic')
-#model.fit(x_train,y_train)
+#Creating the GridSearchCV
 clf = GridSearchCV(MLP(), param_grid = parameters,verbose = 1)
 clf.fit(x_train,y_train)
 
+#Printing key information from the cross-validation
 print(clf.cv_results_.keys())
 print(clf.best_params_)
 print(clf.best_score_)
@@ -30,6 +31,7 @@ print(clf.best_score_)
 ##############################
 # PREDICTION AND TESTING     #
 ##############################
+#Making the actual prediction
 y_pred = clf.predict(x_test)
 percentage = round((accuracy_score(y_test,y_pred)*100),2)
 print("The accuracy score of this algorithm was, ",percentage)
