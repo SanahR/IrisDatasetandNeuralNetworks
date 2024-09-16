@@ -42,6 +42,7 @@ print(clf.best_score_)
 # PREDICTION AND TESTING     #
 ##############################
 y_pred = model.predict(x_test)
+#y_pred = clf.predict(x_test) is also a way to do this
 #The average accuracy of this algorithm based on 20 runs is approximately 97.78 percent. 
 
 #Multiplying the accuracy score by 100 to get a percentage, then rounding that to clean the number up. 
